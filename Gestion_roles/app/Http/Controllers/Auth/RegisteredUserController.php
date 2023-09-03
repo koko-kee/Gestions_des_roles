@@ -45,11 +45,8 @@ class RegisteredUserController extends Controller
 
         $role = Roles::select('id')->where('name','utilisateur')->first();
         $user ->roles()->attach($role);
-
         event(new Registered($user));
-     
         Auth::login($user);
-
         return redirect(RouteServiceProvider::HOME);
     }
 }
